@@ -11,12 +11,18 @@ items = []
 # only be accessed with a GET method)
 class Item(Resource):
     def get(self, name):
-        for item in items:
-            if item['name'] == name:
-                return item
-        return {'item': None}, 404
+        # for item in items:
+        #     if item['name'] == name:
+        #         return item
+        # next() - returns first item matched by filter function
+        # return {'item': None}, 404
+        # -or-
+        item = next(filter(lambda x: x['name'] == name, items), None)
+        return {'item': item}, 200 if item else 404
 
     def post(self, name):
+        if next(filter(lambda x: x['name'] == name, items), None) is not None:
+            return {'message': "An item with name '{}' already exists.".format(name)}, 400
         # data = request.get_json(force=True)   - force=True will format content-Type header even if it is not set to application/json
         # data = request.get_json(silent=True)  - silent=True will not send the 'no-header' error
         data = request.get_json()
