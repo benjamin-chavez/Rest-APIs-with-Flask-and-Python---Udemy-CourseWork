@@ -1,0 +1,25 @@
+3.57 HTTP Verbs"
+- Requests tell the server to:
+    GET - Retrieve Something
+    Post - Receive data, and use it
+    Put - Make sure that something is there
+    Delete - Remove something
+
+3.58 REST Principles
+- REST is a way of thinking about how a web server responds to your Requests
+  the server responds with resources
+- Same endpoint for different requests == same resource
+- REST is stateless - One request cannot depen on any other requests
+
+SECTION 4:
+
+4.64. Firualenvs and setting up Flask-RESTful
+- virtualenv venv --python=python3    - run this to set up the virtual environment
+- source venv/bin/activate            - Mac/Linux - activate virutal environment
+- ./venv/Scripts/activate.bat         - Windows
+- deactivate                          - To leave the virtual environment
+- rm -rf venv                         - To delete virtual environment
+- pip3 install Flask-RESTful
+
+- mkdir code                          - Create a folde called code and cd into it
+- python3 app.py                      - TO RUN SERVER
