@@ -1,3 +1,12 @@
+SECTION 2:
+********************************************************
+5.29 - Lambda functions in Python
+  - lambda functions do not have names and are only used 
+    to return values
+
+
+SECTION 3:
+********************************************************
 3.57 HTTP Verbs"
 - Requests tell the server to:
     GET - Retrieve Something
@@ -12,7 +21,7 @@
 - REST is stateless - One request cannot depen on any other requests
 
 SECTION 4:
-
+********************************************************
 4.64. Firualenvs and setting up Flask-RESTful
 - virtualenv venv --python=python3    - run this to set up the virtual environment
 - source venv/bin/activate            - Mac/Linux - activate virutal environment
@@ -23,3 +32,10 @@ SECTION 4:
 
 - mkdir code                          - Create a folde called code and cd into it
 - python3 app.py                      - TO RUN SERVER
+
+
+Status Codes:
+- 200         - Okay
+- 201         - Created
+- 202         - Accepted - delaying the creation of an object
+- 404         - Not Found
