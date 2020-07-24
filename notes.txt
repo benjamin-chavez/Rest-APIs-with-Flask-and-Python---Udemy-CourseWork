@@ -3,18 +3,19 @@ SECTION 2:
 5.29 - Lambda functions in Python
   - lambda functions do not have names and are only used 
     to return values
+  - Used to return value not to perform actions
 
 
 SECTION 3:
 ********************************************************
-3.57 HTTP Verbs"
+3.57 - HTTP Verbs"
 - Requests tell the server to:
     GET - Retrieve Something
     Post - Receive data, and use it
     Put - Make sure that something is there
     Delete - Remove something
 
-3.58 REST Principles
+3.58 - REST Principles
 - REST is a way of thinking about how a web server responds to your Requests
   the server responds with resources
 - Same endpoint for different requests == same resource
@@ -22,9 +23,9 @@ SECTION 3:
 
 SECTION 4:
 ********************************************************
-4.64. Firualenvs and setting up Flask-RESTful
+4.64 - Firualenvs and setting up Flask-RESTful
 - virtualenv venv --python=python3    - run this to set up the virtual environment
-- source venv/bin/activate            - Mac/Linux - activate virutal environment
+- source venv/bin/activate            - Mac/Linux - activate virtual environment
 - ./venv/Scripts/activate.bat         - Windows
 - deactivate                          - To leave the virtual environment
 - rm -rf venv                         - To delete virtual environment
@@ -33,9 +34,16 @@ SECTION 4:
 - mkdir code                          - Create a folde called code and cd into it
 - python3 app.py                      - TO RUN SERVER
 
+4.71 - Authentication and loggin in - pt. 1
+- pip3 install Flask-JWT              install JSON Web Tokens
+- Create mapping functions in security.py so that we do not have to iterate 
+  through the database when we want to find a user, we can find the user
+  simply by knowing their username or id
 
 Status Codes:
 - 200         - Okay
 - 201         - Created
 - 202         - Accepted - delaying the creation of an object
+- 400         - Bad Request (user error)
 - 404         - Not Found
+
