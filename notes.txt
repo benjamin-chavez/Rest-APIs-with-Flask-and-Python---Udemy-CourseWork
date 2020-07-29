@@ -47,6 +47,7 @@ Status Codes:
 - 202         - Accepted - delaying the creation of an object
 - 400         - Bad Request (user error)
 - 404         - Not Found
+- 500         - internal server error
 
 Section 5:
 ********************************************************
