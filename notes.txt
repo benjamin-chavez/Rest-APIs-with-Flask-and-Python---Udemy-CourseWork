@@ -29,6 +29,7 @@ SECTION 4:
 - ./venv/Scripts/activate.bat         - Windows
 - deactivate                          - To leave the virtual environment
 - rm -rf venv                         - To delete virtual environment
+- pip3 install Flask
 - pip3 install Flask-RESTful
 
 - mkdir code                          - Create a folde called code and cd into it
@@ -47,3 +48,5 @@ Status Codes:
 - 400         - Bad Request (user error)
 - 404         - Not Found
 
+Section 5:
+********************************************************

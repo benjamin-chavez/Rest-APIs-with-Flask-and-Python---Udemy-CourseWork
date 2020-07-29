@@ -15,7 +15,8 @@ stores = [
     }
 ]
 
-@app.route('/')
+
+@app.route('/home')
 def home():
     return render_template('index.html')
 
@@ -37,7 +38,7 @@ def create_store():
 
 
 # GET /store/<string:name>      - Defaults as GET so you do not need to specify the method
-@app.route('/store/<string:name>') #'http://127.0.0.1:5000/store/some_name'
+@app.route('/store/<string:name>')  # 'http://127.0.0.1:5000/store/some_name'
 def get_store(name):
     # Iterate over stores
     # If the store name matches, return it
@@ -70,7 +71,8 @@ def create_item_in_store(name):
 
 
 # GET /store/<string:name>/item
-@app.route('/store/<string:name>/item') #'http://127.0.0.1:5000/store/some_name'
+# 'http://127.0.0.1:5000/store/some_name'
+@app.route('/store/<string:name>/item')
 def get_items_in_store(name):
     for store in stores:
         if store['name'] == name:
