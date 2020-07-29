@@ -82,4 +82,8 @@ api.add_resource(Item, '/item/<string:name>')     # adding route/endpoint
 api.add_resource(ItemList, '/items')
 api.add_resource(UserRegister, '/register')
 
-app.run(port=5000, debug=True)
+# The following if statement ensures that the app will not run
+# in the case where we were importing something from the app.py
+# file. Instead it will only run the app when we run this file.
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
