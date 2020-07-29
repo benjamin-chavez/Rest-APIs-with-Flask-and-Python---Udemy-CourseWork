@@ -84,12 +84,12 @@ class Item(Resource):
             try:
                 self.insert(updated_item)
             except:
-                return {"message": An error occured inserting the item}, 500
+                return {"message": "An error occured inserting the item"}, 500
         else:
             try:
                 self.update(updated_item)
             except:
-                return {"message": An error occured updating the item}, 500
+                return {"message": "An error occured updating the item"}, 500
         return updated_item
 
     @classmethod
@@ -98,7 +98,7 @@ class Item(Resource):
         cursor = connection.cursor()
 
         query = "UPDATE items SET price=? WHERE name=?"
-        cursor.execute(query, ('item['price'], item['name']))
+        cursor.execute(query, (item['price'], item['name']))
 
         connection.commit()
         connection.close()
@@ -106,7 +106,19 @@ class Item(Resource):
         return {'message': 'Item deleted'}
 
 
-
 class ItemList(Resource):
     def get(self):
-        return {'items': items}
+        connection = sqlite3.connect('data.db')
+        cursor = connection.cursor()
+
+        query = "SELECT * FROM items"
+        result = cursor.execute(query)
+
+        items = []
+
+        for row in result:
+            items.append({'name': row[0], 'price': row[1]})
+
+        connection.close()
+
+        return {"items": items}
