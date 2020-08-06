@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
+from db import db
 
 # The following chunk of code was updated once we moved items to its own file.
 # from flask import Flask, request
@@ -12,6 +13,8 @@ from resources.user import UserRegister
 from resources.item import Item, ItemList
 
 app = Flask(__name__)
+# Specify SQLAlchemy configuration property - turns off Flask SQLAlchemy tracker, and instead uses the SQLAlchemy main library tracker
+app.config['SQLALCHEMY_TRACK_MODIFACTIONS'] = False
 app.secret_key = 'Benny'
 api = Api(app)
 
@@ -86,4 +89,5 @@ api.add_resource(UserRegister, '/register')
 # in the case where we were importing something from the app.py
 # file. Instead it will only run the app when we run this file.
 if __name__ == '__main__':
+    db.init_app(app)
     app.run(port=5000, debug=True)
