@@ -19,6 +19,12 @@ app.config['SQLALCHEMY_TRACK_MODIFACTIONS'] = False
 app.secret_key = 'Benny'
 api = Api(app)
 
+# The following decorator will create all the tables unless they exist already
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+
 jwt = JWT(app, authenticate, identity)  # new endpoint: "/auth"
 
 # THE FOLLOWING CHUNK OF CODE WAS MOVED TO item.py WHEN WE INITIALIZED THE USE OF THE
