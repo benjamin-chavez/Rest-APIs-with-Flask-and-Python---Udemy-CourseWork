@@ -1,5 +1,5 @@
 from werkzeug.security import safe_str_cmp
-from user import User
+from resources.user import User
 
 # We don't need the following code once we have the
 # sqlite database
