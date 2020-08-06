@@ -13,6 +13,11 @@ class Item(Resource):
                         required=True,
                         help="This field cannot be left blank!"
                         )
+    parser.add_argument('store',
+                        type=int,
+                        required=True,
+                        help="Every item needs a store id."
+                        )
 
     @jwt_required()
     def get(self, name):
@@ -30,7 +35,8 @@ class Item(Resource):
 
         # item = {'name': name, 'price': data['price']}
         # item s/b an object, not a dictionary
-        item = ItemModel(name, data['price'])
+        # item = ItemModel(name, data['price'], data['store_id'])
+        item = ItemModel(name, **data)  # The above line refactored
 
         try:
             # ItemModel.insert(item)
@@ -73,7 +79,7 @@ class Item(Resource):
             #     # ItemModel.insert(updated_item)
             # except:
             #     return {"message": "An error occured inserting the item"}, 500
-            item = ItemModel(name, data['price'])
+            item = ItemModel(name, data['price'], data['store_id'])
         else:
             #     try:
             #         # ItemModel.update(updated_item)
