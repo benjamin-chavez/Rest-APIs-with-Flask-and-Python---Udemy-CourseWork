@@ -1,5 +1,5 @@
 from werkzeug.security import safe_str_cmp
-from models.user import User
+from models.user import UserModel
 
 # We don't need the following code once we have the
 # sqlite database
