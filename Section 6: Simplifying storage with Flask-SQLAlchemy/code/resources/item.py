@@ -1,6 +1,6 @@
 # API works with resources and every resource must be a class (Item is a resource that can
 # only be accessed with a GET method)
-import sqlite3
+# import sqlite3
 from flask_restful import Resource, reqparse
 from flask_jwt import jwt_required
 from models.item import ItemModel
@@ -91,17 +91,18 @@ class Item(Resource):
 
 class ItemList(Resource):
     def get(self):
-        connection = sqlite3.connect('data.db')
-        cursor = connection.cursor()
+        # connection = sqlite3.connect('data.db')
+        # cursor = connection.cursor()
 
-        query = "SELECT * FROM items"
-        result = cursor.execute(query)
+        # query = "SELECT * FROM items"
+        # result = cursor.execute(query)
 
-        items = []
+        # items = []
 
-        for row in result:
-            items.append({'name': row[0], 'price': row[1]})
+        # for row in result:
+        #     items.append({'name': row[0], 'price': row[1]})
 
-        connection.close()
+        # connection.close()
 
-        return {"items": items}
+        # return {"items": items}
+        return {'items': [item.json() for item in ItemModel.query.all()]}
