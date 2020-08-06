@@ -13,6 +13,7 @@ from resources.user import UserRegister
 from resources.item import Item, ItemList
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 # Specify SQLAlchemy configuration property - turns off Flask SQLAlchemy tracker, and instead uses the SQLAlchemy main library tracker
 app.config['SQLALCHEMY_TRACK_MODIFACTIONS'] = False
 app.secret_key = 'Benny'

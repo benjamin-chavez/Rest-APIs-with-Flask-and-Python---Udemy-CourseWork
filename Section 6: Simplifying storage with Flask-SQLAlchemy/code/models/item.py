@@ -1,4 +1,3 @@
-import sqlite3
 from db import db
 
 
@@ -23,40 +22,48 @@ class ItemModel(db.Model):
     # object of type ItemModel as apposed to a dictionary
     @classmethod
     def find_by_name(cls, name):
-        connection = sqlite3.connect('data.db')
-        cursor = connection.cursor()
+        # connection = sqlite3.connect('data.db')
+        # cursor = connection.cursor()
 
-        query = "SELECT * FROM items WHERE name=?"
-        result = cursor.execute(query, (name,))
-        row = result.fetchone()
-        connection.close()
+        # query = "SELECT * FROM items WHERE name=?"
+        # result = cursor.execute(query, (name,))
+        # row = result.fetchone()
+        # connection.close()
 
-        if row:
-            # return{'item': {'name': row[0], 'price': row[1]}}
+        # if row:
+        #     # return{'item': {'name': row[0], 'price': row[1]}}
 
-            # Return an ItemModel object below
-            # return cls(row[0], row[1])
-            # refactored below:
-            return cls(*row)
+        #     # Return an ItemModel object below
+        #     # return cls(row[0], row[1])
+        #     # refactored below:
+        #     return cls(*row)
 
-    def insert(self):
-        connection = sqlite3.connect('data.db')
-        cursor = connection.cursor()
+        # SELECT * FROM items WHERE name=name LIMIT 1
+        return cls.query.filter_by(name=name).first()
 
-        query = "INSERT INTO items VALUES (?, ?)"
-        cursor.execute(query, (self.name, self.price))
+    def save_to_db(self):
+        # connection = sqlite3.connect('data.db')
+        # cursor = connection.cursor()
 
-        connection.commit()
-        connection.close()
+        # query = "INSERT INTO items VALUES (?, ?)"
+        # cursor.execute(query, (self.name, self.price))
 
-    def update(self):
-        connection = sqlite3.connect('data.db')
-        cursor = connection.cursor()
+        # connection.commit()
+        # connection.close()
+        db.session.add(self)
+        db.session.commit()
 
-        query = "UPDATE items SET price=? WHERE name=?"
-        cursor.execute(query, (self.price, self.name))
+    # def update(self):
+    #     connection = sqlite3.connect('data.db')
+    #     cursor = connection.cursor()
 
-        connection.commit()
-        connection.close()
+    #     query = "UPDATE items SET price=? WHERE name=?"
+    #     cursor.execute(query, (self.price, self.name))
 
-        return {'message': 'Item deleted'}
+    #     connection.commit()
+    #     connection.close()
+
+    #     return {'message': 'Item deleted'}
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
