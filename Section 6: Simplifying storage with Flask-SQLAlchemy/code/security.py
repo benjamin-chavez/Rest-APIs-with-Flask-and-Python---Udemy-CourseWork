@@ -1,5 +1,5 @@
 from werkzeug.security import safe_str_cmp
-from resources.user import User
+from models.user import User
 
 # We don't need the following code once we have the
 # sqlite database
@@ -14,7 +14,7 @@ from resources.user import User
 
 def authenticate(username, password):
     # user = username_mapping.get(username, None)
-    user = User.find_by_username(username)  # with new User method
+    user = UserModel.find_by_username(username)  # with new User method
     if user and safe_str_cmp(user.password, password):
         return user
 
@@ -22,4 +22,4 @@ def authenticate(username, password):
 def identity(payload):
     user_id = payload['identity']
     # return userid_mapping.get(user_id, None)
-    return User.find_by_id(user_id)
+    return UserModel.find_by_id(user_id)
