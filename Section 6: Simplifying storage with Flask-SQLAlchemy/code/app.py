@@ -11,6 +11,7 @@ from db import db
 from security import authenticate, identity
 from resources.user import UserRegister
 from resources.item import Item, ItemList
+from resources.store import Store, StoreList
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -87,9 +88,11 @@ jwt = JWT(app, authenticate, identity)  # new endpoint: "/auth"
 #     def get(self):
 #         return {'items': items}
 
-
+api.add_resources(Store, '/store/<string:name>')
 api.add_resource(Item, '/item/<string:name>')     # adding route/endpoint
 api.add_resource(ItemList, '/items')
+api.add_resource(StoreList, '/stores')
+
 api.add_resource(UserRegister, '/register')
 
 # The following if statement ensures that the app will not run
