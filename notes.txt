@@ -60,7 +60,25 @@ Model - A model is our internal representation of an entity
 Resource - a resource is the external representation of an entity
 
 - python3 create_tables.py            - to create SQLAlchemy database prior to running your app
+  **
+    -By running the following code in the app.py file, you don't need to run the create_table.py command
+  @app.before_first_request
+  def create_tables():
+    db.create_all()
+
 - python 3 app.py                     - be sure to start your app from the same folder where you ran create_tables command
 
 Setting up SQLAlchemy:
   - In your main code folder create a file <db.py>
+
+
+
+Section 7: Git
+********************************************************
+- git rm --cached <file>..              - to unstage from a commit
+
+- Adding a README file with vim:
+  - vim README.md                       - To enter vim for your new README file
+  - i                                   - To enter the text editor within vim
+  - esc (key)                           - To exit vim
+  - :wq                                 - To save and create the README file
