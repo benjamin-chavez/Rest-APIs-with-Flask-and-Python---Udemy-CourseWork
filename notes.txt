@@ -71,8 +71,6 @@ Resource - a resource is the external representation of an entity
 Setting up SQLAlchemy:
   - In your main code folder create a file <db.py>
 
-
-
 Section 7: Git
 ********************************************************
 - git rm --cached <file>..              - to unstage from a commit
@@ -82,3 +80,6 @@ Section 7: Git
   - i                                   - To enter the text editor within vim
   - esc (key)                           - To exit vim
   - :wq                                 - To save and create the README file
+
+Section 8: Deploying Flask apps to Heroku
+********************************************************
