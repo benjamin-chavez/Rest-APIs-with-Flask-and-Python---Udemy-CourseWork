@@ -88,7 +88,7 @@ jwt = JWT(app, authenticate, identity)  # new endpoint: "/auth"
 #     def get(self):
 #         return {'items': items}
 
-api.add_resources(Store, '/store/<string:name>')
+api.add_resource(Store, '/store/<string:name>')
 api.add_resource(Item, '/item/<string:name>')     # adding route/endpoint
 api.add_resource(ItemList, '/items')
 api.add_resource(StoreList, '/stores')
