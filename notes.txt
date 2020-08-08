@@ -83,3 +83,11 @@ Section 7: Git
 
 Section 8: Deploying Flask apps to Heroku
 ********************************************************
+- touch .gitignore                      - Create your .gitignore file
+- vi .gitignore                         -
+- git init                              - Create your git Repo
+- touch runtime.txt                     - tells Heroku the language and version
+- touch requirements.txt                - Tells Heroku which libraries to use
+                                            * Note: Add wsgi to this file, but you do not need to install it locally.
+- touch uwsgi.ini                       - Add config params for usgi process to run on app.
+- touch Procfile                        - specify the dyno to use in Heroku
