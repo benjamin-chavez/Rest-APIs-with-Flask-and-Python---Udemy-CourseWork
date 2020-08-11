@@ -189,3 +189,23 @@ f54724cdfb045c6b80680aa547
             }
     - press escape key then type ':wq' to write and quit
     12:21
+    - sudo ln -s /etc/nginx/sites-available/item-rest.conf /etc/nginx/sites-enabled/        - To enable the nginx config
+    - sudo mkdir /var/www/html/items-rest                   - Create folder where the app will live
+    - sudo chown ben:ben /var/www/html/items-rest           - Make ben user and ben group the owner of the new directory (chown = change owner)
+    - cd /var/www/html/items-rest/                          - change into the new directory
+    - git clone https://github.com/schoolofcode-me/stores-rest-api.git .                    - Clone the git repo
+    - mkdir log                                             - Create a directory for our app's logs
+    - sudo apt-get install python-pip                       - Install python package manager
+    - sudo apt-get install python3-dev                      - Install tools for python to compile from source
+    - sudo apt-get install libpq-dev                        - Allows us to run psycopg2 for postgres
+    - pip install virtualenv                                - Install Virtual environment so that we do not polute the main 
+                                                              ubuntu install with our libraries
+    - virtualenv venv --python=python3                      - setup our virtual env
+    - source venv/bin/activate                              - Go into the new virtual environment
+    - pip install -r requirements.txt                       - Get all requirements from requirements.txt file and install in our virutal environment
+
+6. Set up uwsgi so that our app can communicate with uwsgi and nginx can communicate with uwsgi to create a complete chain:
+    - 
+
+
+
