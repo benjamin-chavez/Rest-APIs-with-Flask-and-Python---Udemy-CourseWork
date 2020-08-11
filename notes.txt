@@ -205,7 +205,51 @@ f54724cdfb045c6b80680aa547
     - pip install -r requirements.txt                       - Get all requirements from requirements.txt file and install in our virutal environment
 
 6. Set up uwsgi so that our app can communicate with uwsgi and nginx can communicate with uwsgi to create a complete chain:
-    - 
+    :Create an Ubuntu Service (a descriptor of a program)
+      - sudo vi /etc/systemd/system/uwsgi_items_rest.service      - open up text editor to create and edit a file in the folder.
+                                                                    when you create .service files in this folder ubuntu knows it is a 
+                                                                    service that can be run using the system controller.
+      - Update the new file with the below. Then press escape key and type ':wq' to write and quit
+            [Unit]
+            Description=uWSGI items rest
+
+            [Service]
+            Environment=DATABASE_URL=postgres://ben:2019leW@gon@localhost:5432/ben
+            ExecStart=/var/www/html/items-rest/venv/bin/uwsgi --master --emperor /var/www/html/items-rest/uwsgi.ini --die-on-term --uid ben --gid ben --logto /var/www/html/items-rest/log/emperor.log
+            Restart=always
+            KillSignal=SIGQUIT
+            Type=notify
+            NotifyAccess=all
+
+            [Install]
+            WantedBy=multi-user.target
+      - vi uwsgi.ini                                              - Open and change the uwsgi file to the below to tell the uwsg 
+                                                                    process how to run our python code . Then press escape key and 
+                                                                    type ':wq' to write and quit.
+            [uwsgi]
+            base = /var/www/html/items-rest
+            app = run
+            module = %(app)
+
+            home = %(base)/venv
+            pythonpath = %(base)
+
+            socket = %(base)/socket.sock
+
+            chmod-socket = 777
+
+            processes = 8
+
+            threads = 8
+
+            harakiri = 15
+
+            callable = app
+
+            logto = /var/www/html/items-rest/log/%n.log
+      - sudo systemctl start uwsgi_items_rest                 - Start our Flask app
+      - vi log/uwsgi.log                                      - Go into log folder and look at uwsgi log (:q to exit)
+
 
 
 
