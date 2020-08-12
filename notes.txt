@@ -268,3 +268,7 @@ understand it. In this section we'll learn about enabling HTTPS (SSL) in our RES
 EBook Located at: https://books.tecladocode.com/rest-apis-with-flask-and-python/domains-and-https/what-is-a-domain
 
 
+namecheap           - Site to buy domains 
+cloudflare          - Site to host your app domain
+
+DNS (Domain Name System): 
