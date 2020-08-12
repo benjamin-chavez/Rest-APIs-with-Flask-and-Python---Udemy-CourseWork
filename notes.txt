@@ -257,3 +257,14 @@ f54724cdfb045c6b80680aa547
       - sudo systemctl restart nginx                          - Restart nginx config
       - sudo systemctl start uwsgi_items_rest                 - uwsgi start flask app
       
+
+Section 10: Security in your REST APIs
+********************************************************
+In order to prevent people from intercepting the data on the internet and being able to read it, we must 
+use Secure Sockets Layer. This sits on top of HTTP and encrypts all communication between a server and a 
+client. What this means is that if someone does intercept traffic that is encrypted, they won't be able to 
+understand it. In this section we'll learn about enabling HTTPS (SSL) in our REST APIs.
+
+EBook Located at: https://books.tecladocode.com/rest-apis-with-flask-and-python/domains-and-https/what-is-a-domain
+
+
