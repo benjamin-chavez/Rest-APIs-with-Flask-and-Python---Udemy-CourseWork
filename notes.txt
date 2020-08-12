@@ -161,9 +161,10 @@ f54724cdfb045c6b80680aa547
     - sudo ufw status                   - let nginx have access through firewall
     - sudo ufw enable                   - enable firewall
     - sudo ufw allow 'Nginx HTTP'       - puts nginx in the firewall
-    - sudo uwf allow ssh                - to ensure that we don't get locked out of the server
+    - sudo ufw allow ssh                - to ensure that we don't get locked out of the server
     - systemctl status nginx            - ensure nginx is running (check trhough system controller)
-    - sudo vi /etc/nginx/sites-available/items-rest.conf        - add config paramaters to nginx to ensure it can access API
+    - sudo apt-get update               - add config paramaters to nginx to ensure it can access API
+    - sudo vi /etc/nginx/sites-available/items-rest.conf
       add the following to the file:
             server {
             listen 80;
@@ -189,7 +190,7 @@ f54724cdfb045c6b80680aa547
             }
     - press escape key then type ':wq' to write and quit
     12:21
-    - sudo ln -s /etc/nginx/sites-available/item-rest.conf /etc/nginx/sites-enabled/        - To enable the nginx config
+    - sudo ln -s /etc/nginx/sites-available/items-rest.conf /etc/nginx/sites-enabled/        - To enable the nginx config
     - sudo mkdir /var/www/html/items-rest                   - Create folder where the app will live
     - sudo chown ben:ben /var/www/html/items-rest           - Make ben user and ben group the owner of the new directory (chown = change owner)
     - cd /var/www/html/items-rest/                          - change into the new directory
@@ -250,6 +251,9 @@ f54724cdfb045c6b80680aa547
       - sudo systemctl start uwsgi_items_rest                 - Start our Flask app
       - vi log/uwsgi.log                                      - Go into log folder and look at uwsgi log (:q to exit)
 
-
-
-
+7. Testing our API to verify functionality:
+      - sudo rm /etc/nginx/sites-enabled/default              - delete default nginx configuration property
+      - sudo systemctl reload nginx                           - Reload nginx config
+      - sudo systemctl restart nginx                          - Restart nginx config
+      - sudo systemctl start uwsgi_items_rest                 - uwsgi start flask app
+      
