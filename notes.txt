@@ -271,4 +271,69 @@ EBook Located at: https://books.tecladocode.com/rest-apis-with-flask-and-python/
 namecheap           - Site to buy domains 
 cloudflare          - Site to host your app domain
 
-DNS (Domain Name System): 
+DNS (Domain Name System):      - DNS allows a browser to enter a string in the address bar and then go to a particular
+                                 ip address
+                                 
+CDN (Content Delivery Network) - A CDN sits in front of our server.Users accessing our domain are actually accessing 
+                                 cloudlfare. We are storing our site on cloudflere.
+CNAME                          - 
+MX (Email Exchange)                                 
+TXT                            - Text stored against our domain for DNS servers and email forwarding.
+A                              - The A record stores the ip address of the server that the current domain points to
+AAAA                           - Same as A record, but used for ipv6
+CNAME                          - Used to create an alias for the domain. Good for redirecting <www.website.com> to <website.com>.
+
+
+2. Setting up HTTPS:
+  - ssh ben@206.189.186.205                 - Login to your server
+  - sudo mkdir /var/www/ssl      
+  - sudo touch /var/www/ssl/<domain>.pem
+  - sudo touch /var/www/ssl/<domain>.key
+  - sudo vi /var/www/ssl/<domain>.pem       - Use vim to access the file. update with your certificate:
+    -----BEGIN CERTIFICATE-----
+    MIIEujCCA6KgAwIBAgIUTfxNIVLQ9Asl0xt8Vu75cVlIxiAwDQYJKoZIhvcNAQEL
+    . . . 
+    -----END CERTIFICATE-----
+  - 
+  - sudo vi /var/www/ssl/<domain>.key       - Use vim to access the file. update with your private key:
+    -----BEGIN PRIVATE KEY-----
+    MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDelT2bz9/o29Gj
+    . . . 
+    -----END PRIVATE KEY-----
+  - sudo vi /etc/nginx/sites-enabled/items-rest.conf - Serve the https traffic using nginx. Update as follows *
+     server {
+*     listen 443 default_server;
+*     server_name benjamin-chavez-api.xyz;
+*     ssl on;
+*     ssl_certificate /var/www/ssl/benjamin-chavez-api.xyz.pem;
+*     ssl_certificate_key /var/www/ssl/benjamin-chavez-api.xyz.key;
+      real_ip_header X-Forwarded-For;
+      set_real_ip_from 127.0.0.1;
+
+      location / {
+        include uwsgi_params;
+        uwsgi_pass unix:/var/www/html/items-rest/socket.sock;
+        uwsgi_modifier1 30;
+      }
+
+      error_page 404 /404.html;
+      location = /404.html {
+        root /usr/share/nginx/html;
+      }
+
+      error_page 500 502 503 504 /50x.html;
+      location = /50x.html {
+        root /usr/share/nginx/html;
+      }
+     }
+
+*    server {
+*     listen 80;
+*     server_name benjamin-chavez-api.xyz;
+*     rewrite ^/(.*) https://benjamin-chavez-api.xyz/$1 permanent;
+     }
+  - sudo ufw allow https                  - to ensure no firewall issues
+  - sudo ufw reload
+  - sudo systemctl reload nginx
+  - sudo systemctl restart nginx
+  
