@@ -5,7 +5,6 @@ app and the logout resource so that tokens can be added to the blacklist when th
 user logs out.
 """
 
-
 # Constant Set
 # User id's 2 & 3 will not have access.
-BLACKLIST = {2, 3}
+BLACKLIST = set()
