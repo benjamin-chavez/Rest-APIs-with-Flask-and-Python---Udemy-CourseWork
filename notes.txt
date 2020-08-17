@@ -353,3 +353,5 @@ Section 11: Token refreshing and Flask-JWT-Extended
                 i.e. user logged in a week ago and has stayed logged in. if
                 the user wants to change their password they will need a 
                 fresh token.
+
+EBook of the app: https://arac.tecladocode.com/
