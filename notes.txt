@@ -48,6 +48,7 @@ Status Codes:
 - 201         - Created
 - 202         - Accepted - delaying the creation of an object
 - 400         - Bad Request (user error)
+- 401         - Unauthorized
 - 404         - Not Found
 - 500         - internal server error
 
@@ -337,3 +338,9 @@ CNAME                          - Used to create an alias for the domain. Good fo
   - sudo systemctl reload nginx
   - sudo systemctl restart nginx
   
+
+Section 11: Token refreshing and Flask-JWT-Extended
+********************************************************
+Claims: pieces of data in jwt_extended that we can attach to the jwt 
+        payload that are seperate from the identity. Claims allow us 
+        to do something when the jwt comes back to us.
