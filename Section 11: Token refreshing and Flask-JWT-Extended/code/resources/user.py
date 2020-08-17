@@ -10,7 +10,7 @@ _user_parser.add_argument('username',
                           required=True,
                           help="This field cannot be blank."
                           )
-_user_parser.add_arugment('password'.
+_user_parser.add_argument('password',
                           type=str,
                           required=True,
                           help="This field cannot be blank"
@@ -19,7 +19,7 @@ _user_parser.add_arugment('password'.
 
 class UserRegister(Resource):
     def post(self):
-        data = _user_parser.parser.parse_args()
+        data = _user_parser.parse_args()
 
         if UserModel.find_by_username(data['username']):
             return {"message": "A user with that username already exists"}, 400
@@ -51,16 +51,16 @@ class UserLogin(Resource):
     @classmethod
     def post(cls):
         # get data from parser
-        data = _user_parser.parser.parse_args()
+        data = _user_parser.parse_args()
 
         # find user in database
         user = UserModel.find_by_username(data['username'])
 
         # The following if statement is doing what the previously used 'authenticate()' function did
         # check password
-        if user and safe_str_comp(user.password, data['password']):
+        if user and safe_str_cmp(user.password, data['password']):
             # create access token  - # identity is what the old 'identity()' function did
-            access_token = creat_access_token(identity=user.id, fresh=True)
+            access_token = create_access_token(identity=user.id, fresh=True)
             # create refresh token
             refresh_token = create_refresh_token(user.id)
             # return them
