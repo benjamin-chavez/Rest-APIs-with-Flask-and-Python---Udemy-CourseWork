@@ -22,6 +22,15 @@ def create_tables():
 
 jwt = JWTManager(app)   # not creating /auth endpoint
 
+
+@jwt.user_claims_loader
+def add_claims_to_jwt(identity):
+    # Instead of hard-coding, you should read from a config file or a db.
+    if identity == 1:
+        return {'is_admin': True}
+    return {'is_admin': False}
+
+
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(StoreList, '/stores')
 api.add_resource(Item, '/item/<string:name>')
