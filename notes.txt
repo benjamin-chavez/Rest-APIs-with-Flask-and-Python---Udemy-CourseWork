@@ -341,6 +341,15 @@ CNAME                          - Used to create an alias for the domain. Good fo
 
 Section 11: Token refreshing and Flask-JWT-Extended
 ********************************************************
-Claims: pieces of data in jwt_extended that we can attach to the jwt 
-        payload that are seperate from the identity. Claims allow us 
-        to do something when the jwt comes back to us.
+  Claims: pieces of data in jwt_extended that we can attach to the jwt 
+          payload that are seperate from the identity. Claims allow us 
+          to do something when the jwt comes back to us.
+
+  Fresh Token:  As appossed to a Non-Fresh Token, a Fresh Token is a token 
+                a user receives after entering their credentials.
+
+                Used when the user is already logged in, but their token 
+                has expired and the user wants to perform a critcal action.
+                i.e. user logged in a week ago and has stayed logged in. if
+                the user wants to change their password they will need a 
+                fresh token.
